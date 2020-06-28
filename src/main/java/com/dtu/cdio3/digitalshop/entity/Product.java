@@ -25,7 +25,6 @@ public class Product {
 	private Category category;
 	public Product() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	@Id
