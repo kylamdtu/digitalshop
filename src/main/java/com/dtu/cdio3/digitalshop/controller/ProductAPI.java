@@ -32,6 +32,7 @@ public class ProductAPI {
 	}
 	
     @PostMapping
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<Product> create(@RequestBody Product product) {
         productService.save(product);
 
@@ -46,15 +47,15 @@ public class ProductAPI {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<Product> update(@PathVariable int id, @RequestBody Product product) {
-//        product.setId(id);
-
+        product.setId(id);
         productService.save(product);
-
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(product);
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<Product> delete(@PathVariable int id) {
         productService.delete(id);
 
