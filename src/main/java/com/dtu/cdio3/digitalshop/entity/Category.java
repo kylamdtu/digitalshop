@@ -15,10 +15,8 @@ import javax.persistence.UniqueConstraint;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import lombok.Data;
 
 @Entity
-@Data
 @Table(name = "Category",
 	uniqueConstraints =  {@UniqueConstraint(columnNames = {"id"}) })
 public class Category {
@@ -30,7 +28,6 @@ public class Category {
 	
 	protected Category() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	protected Category(int id) {
@@ -57,7 +54,7 @@ public class Category {
 		this.name = name;
 	}
 
-	@Column(name = "desciption")
+	@Column(name = "description")
 	public String getDescription() {
 		return description;
 	}
