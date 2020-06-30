@@ -70,7 +70,7 @@ public class Customer {
 	
 	@OneToMany
 	@JoinColumn(name = "customerId", referencedColumnName = "id")
-	@JsonManagedReference
+//	@JsonManagedReference
 	public Set<Order> getOrders() {
 		return orders;
 	}

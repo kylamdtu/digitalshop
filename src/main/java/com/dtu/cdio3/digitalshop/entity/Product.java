@@ -81,7 +81,7 @@ public class Product {
 	
 	@ManyToOne
 	@JoinColumn(name = "promotionId")
-	@JsonBackReference
+//	@JsonBackReference
 	public Promotion getPromotion() {
 		return promotion;
 	}
@@ -104,7 +104,7 @@ public class Product {
 
 	@OneToMany
 	@JoinColumn(name = "productId", referencedColumnName = "id")
-	@JsonManagedReference
+//	@JsonManagedReference
 	public Set<Image> getImages() {
 		return images;
 	}
@@ -115,7 +115,7 @@ public class Product {
 
 	@OneToMany
 	@JoinColumn(name = "productId")
-	@JsonManagedReference
+//	@JsonManagedReference
 	public Set<OrderDetail> getOrderDetails() {
 		return orderDetails;
 	}

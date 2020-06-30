@@ -41,7 +41,7 @@ public class Order {
 	
 	@ManyToOne
 	@JoinColumn(name = "customerId")
-	@JsonBackReference
+//	@JsonBackReference
 	public Customer getCustomer() {
 		return customer;
 	}

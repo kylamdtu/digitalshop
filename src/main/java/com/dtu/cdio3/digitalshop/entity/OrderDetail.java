@@ -85,7 +85,7 @@ public class OrderDetail {
 	@ManyToOne
 	@JoinColumns({@JoinColumn(name = "orderId"),
 					@JoinColumn(name = "productId")})
-	@JsonBackReference
+//	@JsonBackReference
 	public OrderDetailIdentity getId() {
 		return id;
 	}

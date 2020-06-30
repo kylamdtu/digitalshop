@@ -32,7 +32,7 @@ public class Image {
 	
 	@ManyToOne
 	@JoinColumn(name = "productId")
-	@JsonBackReference
+//	@JsonBackReference
 	public Product getProduct() {
 		return product;
 	}

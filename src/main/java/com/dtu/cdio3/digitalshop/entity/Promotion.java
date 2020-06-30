@@ -71,7 +71,7 @@ public class Promotion {
 	
 	@OneToMany
 	@JoinColumn(name = "promotionId", referencedColumnName = "id")
-	@JsonManagedReference
+//	@JsonManagedReference
 	public Set<Product> getProducts() {
 		return products;
 	}
