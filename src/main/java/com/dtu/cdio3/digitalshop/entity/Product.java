@@ -1,5 +1,8 @@
 package com.dtu.cdio3.digitalshop.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,10 +11,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "Product",
@@ -23,6 +28,11 @@ public class Product {
 	private long price;
 	private String description;
 	private Category category;
+	private Promotion promotion;
+	private Set<Image> images = new HashSet<Image>();
+	private Set<OrderDetail> orderDetails = new HashSet<OrderDetail>(); 
+	
+
 	public Product() {
 		super();
 	}
@@ -69,6 +79,18 @@ public class Product {
 		this.description = description;
 	}
 	
+	@ManyToOne
+	@JoinColumn(name = "promotionId")
+	@JsonBackReference
+	public Promotion getPromotion() {
+		return promotion;
+	}
+
+	public void setPromotion(Promotion promotion) {
+		this.promotion = promotion;
+	}
+
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "catId")
 	@JsonBackReference
@@ -78,5 +100,27 @@ public class Product {
 	
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+
+	@OneToMany
+	@JoinColumn(name = "productId", referencedColumnName = "id")
+	@JsonManagedReference
+	public Set<Image> getImages() {
+		return images;
+	}
+
+	public void setImages(Set<Image> images) {
+		this.images = images;
+	}
+
+	@OneToMany
+	@JoinColumn(name = "productId")
+	@JsonManagedReference
+	public Set<OrderDetail> getOrderDetails() {
+		return orderDetails;
+	}
+
+	public void setOrderDetails(Set<OrderDetail> orderDetails) {
+		this.orderDetails = orderDetails;
 	}
 }

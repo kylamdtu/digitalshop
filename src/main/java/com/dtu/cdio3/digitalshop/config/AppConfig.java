@@ -2,6 +2,8 @@ package com.dtu.cdio3.digitalshop.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.orm.jpa.JpaVendorAdapter;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -17,4 +19,14 @@ public class AppConfig {
 		return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.any())
 				.paths(PathSelectors.any()).build();
 	}
+	
+	@Bean
+	public JpaVendorAdapter jpaVendorAdapter(){
+	    HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
+	    jpaVendorAdapter.setGenerateDdl(true);
+	    jpaVendorAdapter.setShowSql(true);
+
+	    return jpaVendorAdapter;
+	}
 }
+
