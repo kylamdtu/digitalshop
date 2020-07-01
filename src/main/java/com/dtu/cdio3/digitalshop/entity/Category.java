@@ -14,13 +14,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Entity
 @Table(name = "Category",
 	uniqueConstraints =  {@UniqueConstraint(columnNames = {"id"}) })
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Category {
 	
 	private int id;
@@ -66,10 +67,9 @@ public class Category {
 		this.description = description;
 	}
 	                                                                                    
-	@OneToMany(fetch=FetchType.LAZY)
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	@OneToMany(fetch=FetchType.EAGER)
 	@JoinColumn(name = "catId", referencedColumnName="id")
-	@JsonManagedReference
+	@JsonBackReference
 	public Set<Product> getProducts(){
 		return products;
 	}

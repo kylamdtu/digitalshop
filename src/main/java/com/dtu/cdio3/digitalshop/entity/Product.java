@@ -15,7 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -81,7 +80,6 @@ public class Product {
 	
 	@ManyToOne
 	@JoinColumn(name = "promotionId")
-//	@JsonBackReference
 	public Promotion getPromotion() {
 		return promotion;
 	}
@@ -93,7 +91,7 @@ public class Product {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "catId")
-	@JsonBackReference
+	@JsonManagedReference
 	public Category getCategory() {
 		return category;
 	}
@@ -104,7 +102,6 @@ public class Product {
 
 	@OneToMany
 	@JoinColumn(name = "productId", referencedColumnName = "id")
-//	@JsonManagedReference
 	public Set<Image> getImages() {
 		return images;
 	}
@@ -115,7 +112,6 @@ public class Product {
 
 	@OneToMany
 	@JoinColumn(name = "productId")
-//	@JsonManagedReference
 	public Set<OrderDetail> getOrderDetails() {
 		return orderDetails;
 	}
